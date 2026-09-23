@@ -1,0 +1,94 @@
+version: "0.1.0"
+status: "trial"
+canonical_rule: "docs/05-贡献核算与分配.md"
+
+task_value:
+  base_formula: "((sum((technical_base * technical_weight + creative_base * creative_weight) * scale)) + communication + preparation) * split_adjustment"
+  final_formula: "base_value * acceptance_multiplier"
+  type_weights:
+    technical_development: { technical: 1.5, creative: 0.5 }
+    content_creation: { technical: 0.5, creative: 1.5 }
+    operations_growth: { technical: 0.8, creative: 1.2 }
+    research_analysis: { technical: 1.2, creative: 0.8 }
+    general: { technical: 1.0, creative: 1.0 }
+  technical_base:
+    basic_operation: 1
+    standard_process: 2
+    existing_tool: 3
+    problem_solving: 4
+    technical_research: 6
+    system_design: 8
+  creative_base:
+    complete_template: 1
+    local_adjustment: 2
+    method_combination: 3
+    original_within_framework: 4
+    beyond_existing_framework: 6
+    original_creation: 8
+  scale_ranges:
+    micro: [0.5, 0.8]
+    small: [0.8, 1.2]
+    medium: [1.2, 2.0]
+    large: [2.0, 3.0]
+    extra_large: [3.0, null]
+  communication:
+    fallback_formula: "max(object) * 0.20 + max(frequency) * 0.35 + max(depth) * 0.35"
+    prefer_actual_records: true
+  preparation:
+    prefer_actual_value: true
+    estimate_default: 2.0
+    legacy_default: 3.5
+  split_adjustment:
+    default: 1.0
+    apply_only_when_duplicate_counting_is_identified: true
+  acceptance_multiplier:
+    1: 0.80
+    2: 0.90
+    3: 1.00
+    4: 1.10
+    5: 1.20
+
+document_distribution:
+  base_pools:
+    decision: 0.30
+    lead_writer: 0.40
+    revision: 0.15
+    feedback: 0.10
+    final_polish: 0.05
+  role_floors:
+    decision: 0.10
+    lead_writer: 0.15
+    revision: 0.05
+    feedback: 0.03
+  accepted_points:
+    revision:
+      major: 3.0
+      important: 2.0
+      general: 1.0
+    feedback:
+      core: 2.0
+      important: 1.0
+      general: 0.5
+    final_polish: 1.0
+  adjustment:
+    divisor: 10.0
+    s_max: 2.5
+    lead_writer_release_per_s: 0.20
+    decision_release_per_s: 0.10
+    revision_reward_weight: 0.60
+    feedback_reward_weight: 0.40
+  vacant_pool:
+    default_receiver: "decision"
+    fallback_receiver: "lead_writer"
+    must_be_declared_before_result: true
+  rounding:
+    decimals: 2
+    residual_receiver: "largest_unrounded_share"
+
+governance:
+  ai_result_is_advisory: true
+  accepted_issue_required: true
+  human_reviewers: 3
+  conflict_of_interest_recusal: true
+  appeal_rounds: 1
+  rule_changes_are_not_retroactive: true
