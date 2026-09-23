@@ -1,6 +1,7 @@
 version: "0.1.0"
 status: "trial"
 canonical_rule: "docs/05-贡献核算与分配.md"
+canonical_document_distribution_rule: "docs/14-文档型成果动态分配.md"
 
 task_value:
   base_formula: "((sum((technical_base * technical_weight + creative_base * creative_weight) * scale)) + communication + preparation) * split_adjustment"
@@ -69,7 +70,6 @@ document_distribution:
       core: 2.0
       important: 1.0
       general: 0.5
-    final_polish: 1.0
   adjustment:
     divisor: 10.0
     s_max: 2.5
